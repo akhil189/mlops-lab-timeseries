@@ -1,0 +1,65 @@
+_request non-retriable exception: Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist)., 401
+Traceback (most recent call last):
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/retry.py", line 123, in retry_request
+    return await func(*args, **kwargs)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/core.py", line 430, in _request
+    validate_response(status, contents, path, args)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/retry.py", line 110, in validate_response
+    raise HttpError(error)
+gcsfs.retry.HttpError: Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist)., 401
+Traceback (most recent call last):
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/src/data_preprocess.py", line 96, in <module>
+    main()
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/src/data_preprocess.py", line 86, in main
+    air_quality_data = pd.read_excel(gcs_train_data_path)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/pandas/util/_decorators.py", line 211, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/pandas/util/_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 482, in read_excel
+    io = ExcelFile(io, storage_options=storage_options, engine=engine)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 1652, in __init__
+    ext = inspect_excel_format(
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/pandas/io/excel/_base.py", line 1525, in inspect_excel_format
+    with get_handle(
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/pandas/io/common.py", line 713, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/pandas/io/common.py", line 411, in _get_filepath_or_buffer
+    ).open()
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/fsspec/core.py", line 132, in open
+    return self.__enter__()
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/fsspec/core.py", line 100, in __enter__
+    f = self.fs.open(self.path, mode=mode)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/fsspec/spec.py", line 1307, in open
+    f = self._open(
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/core.py", line 1519, in _open
+    return GCSFile(
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/core.py", line 1678, in __init__
+    super().__init__(
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/fsspec/spec.py", line 1663, in __init__
+    self.size = self.details["size"]
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/core.py", line 1714, in details
+    self._details = self.fs.info(self.path, generation=self.generation)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/fsspec/asyn.py", line 118, in wrapper
+    return sync(self.loop, func, *args, **kwargs)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/fsspec/asyn.py", line 103, in sync
+    raise return_result
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/fsspec/asyn.py", line 56, in _runner
+    result[0] = await coro
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/core.py", line 962, in _info
+    exact = await self._get_object(path)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/core.py", line 516, in _get_object
+    res = await self._call(
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/core.py", line 437, in _call
+    status, headers, info, contents = await self._request(
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/decorator.py", line 221, in fun
+    return await caller(func, *(extras + args), **kw)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/retry.py", line 158, in retry_request
+    raise e
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/retry.py", line 123, in retry_request
+    return await func(*args, **kwargs)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/core.py", line 430, in _request
+    validate_response(status, contents, path, args)
+  File "/home/sai/workspace/mlops-fall23/labs/timeseries-vertex-ai-lab/mlops-lab-timeseries/ts_env/lib/python3.10/site-packages/gcsfs/retry.py", line 110, in validate_response
+    raise HttpError(error)
+gcsfs.retry.HttpError: Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist)., 401
