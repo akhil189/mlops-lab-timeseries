@@ -3,10 +3,10 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 
 LOCAL_PREPROCESS_FILE_PATH = '/tmp/preprocess.py'
-GITHUB_PREPROCESS_RAW_URL = 'https://raw.githubusercontent.com/shankar-dh/Timeseries/main/src/data_preprocess.py'  # Adjust the path accordingly
+GITHUB_PREPROCESS_RAW_URL = 'https://raw.githubusercontent.com/akhil189/mlops-lab-timeseries/main/src/data_preprocess.py'  # Adjust the path accordingly
 
 LOCAL_TRAIN_FILE_PATH = '/tmp/train.py'
-GITHUB_TRAIN_RAW_URL = 'https://raw.githubusercontent.com/shankar-dh/Timeseries/main/src/trainer/train.py'  # Adjust the path accordingly
+GITHUB_TRAIN_RAW_URL = 'https://raw.githubusercontent.com/akhil189/mlops-lab-timeseries/main/src/trainer/train.py'  # Adjust the path accordingly
 
 default_args = {
     'owner': 'Time_Series_IE7374',
@@ -18,8 +18,8 @@ default_args = {
 dag = DAG(
     'model_retraining',
     default_args=default_args,
-    description='Model retraining at 9 PM everyday',
-    schedule_interval='0 21 * * *',  # Every day at 9 pm
+    description='Model retraining at 8:00 PM everyday',
+    schedule_interval='00 20 * * *',  # Every day at 8:00 pm
     catchup=False,
 )
 
@@ -38,7 +38,7 @@ pull_train_script = BashOperator(
 
 
 env = {
-    'AIP_STORAGE_URI': 'gs://mlops__fall23/model'
+    'AIP_STORAGE_URI': 'gs://ts-lab-bucket2/model'
 }
 
 # Tasks for running scripts
